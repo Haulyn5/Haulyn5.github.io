@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User ID Redirect</title>
+</head>
+<body>
+    <h2>Enter Your User ID</h2>
+    <form id="userForm">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" name="userId" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            var userId = document.getElementById('userId').value;
+            
+            // Check if the userId is odd or even
+            if (userId % 2 !== 0) {
+                window.location.href = 'Survey.html';
+            } else {
+                window.location.href = 'Question.html';
+            }
+        });
+    </script>
+</body>
+</html>
