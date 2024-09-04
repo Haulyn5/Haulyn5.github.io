@@ -74,6 +74,23 @@
         .submit-btn:hover {
             background-color: #0056b3;
         }
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow-y: auto;
+            max-height: 200px;
+        }
+        .result-textarea {
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            background-color: transparent;
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -400,14 +417,18 @@
             </div>
         </div>
 
-        
+
 
         <!-- Submit Button for all forms -->
         <div class="text-center">
             <button class="submit-btn" onclick="submitAll()">Submit All</button>
         </div>
+        <!-- Result container -->
+        <div class="result-container">
+            <textarea class="result-textarea" id="resultText" readonly>请提交评分后，这里将显示结果。</textarea>
+        </div>
 
-        <!-- The submitAll() function works by collect all the ratings and concatenate them into a text and pop it to user -->
+        <!-- The submitAll() function works by collect all the ratings and concatenate them into a text and display it in a textarea -->
         <script>
             function submitAll() {
                 var result = "";
@@ -421,22 +442,22 @@
                         }
                     }
                     if (j == radio.length) {
-                        alert("Please rate all the audio samples before submitting.");
+                        alert("请为所有音频样本评分后再提交。");
                         return;
                     }
                 }
                 // if the user has not rated all the audio, alert the user
                 if (result.split(" ").length < 11) {
-                    alert("Please rate all the audio samples before submitting.");
+                    alert("请为所有音频样本评分后再提交。");
                     return;
                 }
                 else {
-                    alert("Thank you for your participation! Please copy the following text and submit it to us: \n" + result);
+                    result = "您的评分序列如下，请将下面的内容复制发送给我，谢谢！\n" + result;
+                    document.getElementById('resultText').value = result.trim();
                 }
             }
         </script>
-    </div>
-
+        </div>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
